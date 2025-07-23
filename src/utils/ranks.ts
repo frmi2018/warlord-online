@@ -1,6 +1,6 @@
 // src/game/ranks.ts
 
-import type { Card, Ranks, FixResult } from "../../types/types";
+import type { Card, Ranks, FixResult } from "../types/types";
 
 /**
  * Initialise les rangs avec 4 niveaux. Répartit les cartes en partant du rang 1.

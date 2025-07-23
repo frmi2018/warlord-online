@@ -1,5 +1,5 @@
 // src/game/buildInitialSetup.ts
-import type { Card } from "../../types/types";
+import type { Card } from "../types/types";
 import { shuffleArray } from "./shuffle";
 
 function initCardDefaults(card: Card): Card {

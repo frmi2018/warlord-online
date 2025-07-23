@@ -1,5 +1,5 @@
 // src/game/actions/toggleCardSelection.ts
-import type { Card } from "../../types/types";
+import type { Card } from "../types/types";
 
 /**
  * Bascule la sélection d'une carte (sélectionne si pas sélectionnée, désélectionne si sélectionnée).
