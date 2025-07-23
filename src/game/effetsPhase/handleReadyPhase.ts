@@ -3,7 +3,7 @@
 import type { Dispatch, SetStateAction } from "react";
 import type { Ranks } from "../../types/types";
 
-import { rotateCardStatuses } from "../gameActions/ranks";
+import { rotateCardStatuses } from "../../utils/ranks";
 
 /**
  * Gère la phase "ready" (préparation) du tour.

@@ -1,7 +1,7 @@
 import type { Dispatch, SetStateAction } from "react";
 import type { Card, Ranks } from "../../types/types";
 
-import { buildInitialSetup } from "../gameActions/buildInitialSetup";
+import { buildInitialSetup } from "../../utils/buildInitialSetup";
 import { prepareStartingArmyFromCards } from "../../utils/prepareStartingArmyFromCards";
 import { drawCards } from "../actions/drawCards";
 
