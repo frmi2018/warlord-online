@@ -7,7 +7,7 @@ import HandDisplay from "./HandDisplay";
 import GameRanks from "./GameRanks";
 import SelectedCardDisplay from "./SelectedCardDisplay";
 
-import styles from "./GameBoard.module.css";
+import styles from "./Gameboard.module.css";
 
 interface GameBoardProps {
   playerRanks: Ranks;
