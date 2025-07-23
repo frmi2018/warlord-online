@@ -1,7 +1,14 @@
 // src\components\GameBoard.tsx
 
 import React, { useState } from "react";
-import type { Ranks, Card, Phase, Turn, Action } from "../types/types";
+import type {
+  Ranks,
+  Card,
+  Phase,
+  Turn,
+  Action,
+  ClickMode,
+} from "../types/types";
 
 import HandDisplay from "./HandDisplay";
 import GameRanks from "./GameRanks";
@@ -22,8 +29,10 @@ interface GameBoardProps {
   actionsPlayer: number;
   actionsAi: number;
   hasStarted: boolean;
+  selectedCardsForDiscard: Card[];
   selectedCards: Card[];
   selectedToDisplay: Card | null;
+  clickMode: ClickMode;
   handleCardClick: (card: Card) => void;
 }
 
@@ -39,8 +48,10 @@ const GameBoard: React.FC<GameBoardProps> = ({
   actionsPlayer,
   actionsAi,
   hasStarted,
+  selectedCardsForDiscard,
   selectedCards,
   selectedToDisplay,
+  clickMode,
   handleCardClick,
 }) => {
   const [selectedRank, setSelectedRank] = useState<number>(1);
@@ -68,6 +79,8 @@ const GameBoard: React.FC<GameBoardProps> = ({
               hand={aiHand}
               title={"Main de AI"}
               selectedCards={selectedCards}
+              selectedCardsForDiscard={selectedCardsForDiscard} // ✅ À ajouter
+              clickMode={clickMode} // ✅ À ajouter
               handleCardClick={handleCardClick}
             />
           </div>
@@ -76,6 +89,8 @@ const GameBoard: React.FC<GameBoardProps> = ({
               hand={hand}
               title={"Main du joueur"}
               selectedCards={selectedCards}
+              selectedCardsForDiscard={selectedCardsForDiscard} // ✅ À ajouter
+              clickMode={clickMode} // ✅ À ajouter
               handleCardClick={handleCardClick}
             />
           </div>

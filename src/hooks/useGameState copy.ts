@@ -74,45 +74,8 @@ export function useGameState() {
           return;
         }
 
-        // Vérifier si la carte est déjà sélectionnée pour défausse
-        const isAlreadySelected = selectedCardsForDiscard.some(
-          c => c.id === card.id,
-        );
-
-        if (isAlreadySelected) {
-          // Désélectionner la carte
-          setSelectedCardsForDiscard(prev =>
-            prev.filter(c => c.id !== card.id),
-          );
-
-          // Mettre à jour l'affichage visuel dans playerHand
-          const updatedHand = playerHand.map(c =>
-            c.id === card.id ? { ...c, selected: false } : c,
-          );
-          setPlayerHand(updatedHand);
-
-          setLogs(prev => [
-            ...prev.slice(-9),
-            `Carte ${card.name} désélectionnée pour défausse`,
-          ]);
-        } else {
-          // Sélectionner la carte
-          setSelectedCardsForDiscard(prev => [...prev, card]);
-
-          // Mettre à jour l'affichage visuel dans playerHand
-          const updatedHand = playerHand.map(c =>
-            c.id === card.id ? { ...c, selected: true } : c,
-          );
-          setPlayerHand(updatedHand);
-
-          setLogs(prev => [
-            ...prev.slice(-9),
-            `Carte ${card.name} sélectionnée pour défausse`,
-          ]);
-        }
-
-        // Toujours afficher la carte cliquée
-        setSelectedToDisplay(card);
+        // Logique de sélection/désélection
+        handleCardSelection(card);
         break;
       }
 

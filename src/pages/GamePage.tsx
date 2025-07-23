@@ -135,8 +135,10 @@ const GamePage: React.FC = () => {
       actionsPlayer={actionsPlayer}
       actionsAi={actionsAi}
       hasStarted={hasStarted}
+      selectedCardsForDiscard={selectedCardsForDiscard}
       selectedCards={selectedCards}
       selectedToDisplay={selectedToDisplay}
+      clickMode={clickMode}
       handleCardClick={handleCardClick}
     />
   );

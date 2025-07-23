@@ -1,23 +1,19 @@
-// HandCardsStack.tsx - Correction
+// HandCardsStack.tsx - Retrait des props phase et clickMode
 import React, { useEffect, useRef } from "react";
 import styles from "./HandCardsStack.module.css";
 import { Card as CardComponent } from "./Card";
-import type { Card, ClickMode } from "../types/types";
+import type { Card } from "../types/types";
 
 interface HandCardsStackProps {
   hand: Card[];
   stackOffset?: number;
   selectedCards: Card[];
-  selectedCardsForDiscard: Card[]; // ✅ Ajouter cette prop
-  clickMode: ClickMode; // ✅ Ajouter le clickMode
   handleCardClick: (card: Card) => void;
 }
 
 const HandCardsStack: React.FC<HandCardsStackProps> = ({
   hand,
   selectedCards,
-  selectedCardsForDiscard, // ✅ Nouvelle prop
-  clickMode, // ✅ Nouvelle prop
   stackOffset = 70,
   handleCardClick,
 }) => {
@@ -31,12 +27,9 @@ const HandCardsStack: React.FC<HandCardsStackProps> = ({
     }
   }, [hand, stackOffset]);
 
-  // ✅ Choisir les bonnes cartes sélectionnées selon le mode
+  // ✅ TODO résolu : vérifier si chaque carte est sélectionnée
   const isCardSelected = (card: Card): boolean => {
-    const cardsToCheck =
-      clickMode === "discard" ? selectedCardsForDiscard : selectedCards;
-
-    return cardsToCheck.some(selectedCard => selectedCard.id === card.id);
+    return selectedCards.some(selectedCard => selectedCard.id === card.id);
   };
 
   return (
@@ -56,8 +49,8 @@ const HandCardsStack: React.FC<HandCardsStackProps> = ({
               top: `${index * stackOffset}px`,
             }}
             onClick={e => {
-              e.preventDefault();
-              e.stopPropagation();
+              e.preventDefault(); // ❓ Pas vraiment nécessaire sur une div
+              e.stopPropagation(); // ✅ Utile si vous avez des onClick sur les parents
               handleCardClick(card);
             }}
           >

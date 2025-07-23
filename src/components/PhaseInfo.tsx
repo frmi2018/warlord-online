@@ -1,5 +1,6 @@
 import styles from "./PhaseInfo.module.css";
 import type { Phase, Turn } from "../types/types";
+import { D20 } from "./D20";
 
 interface Props {
   turn: Turn;
@@ -27,6 +28,18 @@ export default function PhaseInfo({
           Action joueur: {actionsPlayer} / Ai: {actionsAi}
         </p>
         <p>Phase commencé ? {hasStarted ? "Oui" : "Non"}</p>
+        <p>--</p>
+        <p>version 0.01-230725-frmi@free.fr</p>
+        <p>--</p>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignContent: "space-around",
+          }}
+        >
+          <D20 type="normal" value={null} />
+        </div>
       </div>
     </div>
   );

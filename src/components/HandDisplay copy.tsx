@@ -1,16 +1,14 @@
-// HandDisplay.tsx - Correction
+// HandDisplay.tsx
 import React from "react";
 import styles from "./HandDisplay.module.css";
 import HandCardsStack from "./HandCardsStack";
-import type { Card, ClickMode } from "../types/types";
+import type { Card } from "../types/types";
 
 interface HandDisplayProps {
   hand: Card[];
   title?: string;
   emptyMessage?: string;
   selectedCards: Card[];
-  selectedCardsForDiscard: Card[]; // ✅ Ajouter
-  clickMode: ClickMode; // ✅ Ajouter
   handleCardClick: (card: Card) => void;
 }
 
@@ -18,8 +16,6 @@ const HandDisplay: React.FC<HandDisplayProps> = ({
   hand,
   title,
   selectedCards,
-  selectedCardsForDiscard, // ✅ Nouvelle prop
-  clickMode, // ✅ Nouvelle prop
   handleCardClick,
 }) => {
   return (
@@ -29,8 +25,6 @@ const HandDisplay: React.FC<HandDisplayProps> = ({
         <HandCardsStack
           hand={hand}
           selectedCards={selectedCards}
-          selectedCardsForDiscard={selectedCardsForDiscard} // ✅ Passer la prop
-          clickMode={clickMode} // ✅ Passer la prop
           handleCardClick={handleCardClick}
         />
       </div>
