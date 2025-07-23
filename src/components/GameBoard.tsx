@@ -1,4 +1,4 @@
-// GameBoard.tsx
+// src\components\GameBoard.tsx
 import React, { useState } from "react";
 import type { Ranks, Card, Phase, Turn, Action } from "../types/types";
 
