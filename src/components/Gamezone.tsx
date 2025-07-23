@@ -1,8 +1,10 @@
 // src/components/GameZone.tsx
 import type { Action, Phase, Turn } from "../types/types";
+
 import ActionButtons from "./ActionButtons";
 import LogViewer from "./LogViewer";
 import PhaseInfo from "./PhaseInfo";
+
 import styles from "./GameZone.module.css";
 
 interface Props {
