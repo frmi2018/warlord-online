@@ -1,13 +1,14 @@
 // src\components\GameBoard.tsx
+
 import React, { useState } from "react";
 import type { Ranks, Card, Phase, Turn, Action } from "../types/types";
 
-import GameZone from "./Gamezone";
 import HandDisplay from "./HandDisplay";
 import GameRanks from "./GameRanks";
 import SelectedCardDisplay from "./SelectedCardDisplay";
 
 import styles from "./GameBoard.module.css";
+import GameZone from "./GameZone";
 
 interface GameBoardProps {
   playerRanks: Ranks;
