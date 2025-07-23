@@ -1,4 +1,3 @@
-/* Container principal */
 .gameBoard {
   display: grid;
   grid-template-columns: 300px 165px 1fr 300px;
