@@ -1,0 +1,102 @@
+.rankRow {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.rankRow:hover:not(.selectedRank) {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+}
+
+.selectedRank {
+  cursor: default;
+}
+
+.compactRank {
+  cursor: pointer;
+}
+
+.rankLabel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 80px;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.cardNavigation {
+  display: flex;
+  gap: 0.25rem;
+  margin-top: 0.5rem;
+}
+
+.cardNavigation button {
+  background: none;
+  border: 1px solid #666;
+  color: white;
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+  border-radius: 3px;
+  font-size: 0.8rem;
+  width: 30px;
+  height: 25px;
+}
+
+.cardNavigation button:hover {
+  background: #555;
+}
+
+.cardsContainer {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+}
+
+.cardSlot {
+  width: 135px;
+  height: 195px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.cardSlot:hover {
+  transform: scale(1.05);
+  z-index: 2;
+}
+
+.selectedCard {
+  overflow: visible;
+}
+
+.compactCard {
+  height: 70px;
+  overflow: hidden;
+}
+
+.emptySlot {
+  border: 2px dashed #666;
+  border-radius: 4px;
+  background: #2a2a2a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  font-size: 0.8rem;
+}
+
+.emptySlot.selectedCard {
+  height: 195px;
+}
+
+.emptySlot.compactCard {
+  height: 70px;
+}
+
+.highlightedCard {
+  border: 2px solid orange;
+  box-shadow: 0 0 6px orange;
+}

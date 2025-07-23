@@ -1,0 +1,44 @@
+.actionsSection {
+  flex: 1;
+  overflow: hidden;
+  /* display: flex;
+  flex-direction: column; */
+  background: #1a1a1a;
+  color: white;
+  text-align: center;
+  border-top: 1px solid #666;
+  padding: 0.5rem;
+}
+
+.actionsSection h4 {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  border-bottom: 1px solid #444;
+  padding-bottom: 0.3rem;
+}
+
+.actionButtonsContainer {
+  flex: 1;
+  min-height: min-content;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.actionButton {
+  background: #4a90e2;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-bottom: 0.5rem;
+  width: 100%;
+}
+
+.actionButton:hover {
+  background: #357abd;
+  transform: translateY(-2px);
+}

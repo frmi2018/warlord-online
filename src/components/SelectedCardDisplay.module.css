@@ -1,0 +1,22 @@
+.selectedCardDisplay {
+  background: #1a1a1a;
+  display: flex;
+  justify-content: center; /* Centre horizontalement */
+  align-items: center; /* Centre verticalement */
+  height: 100%; /* Prend toute la hauteur disponible */
+  transform: scale(2); /* Agrandit de 2x */
+  transform-origin: center; /* Point d'origine du zoom */
+  color: "#888";
+}
+
+.card {
+  width: 135px; /* 75% de 180px */
+  height: 195px; /* 75% de 260px */
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Centre verticalement */
+  border-radius: 6px; /* 75% de 8px */
+  background: #afa79e;
+  font-size: 0.6375rem; /* 75% de 0.85rem */
+  color: black;
+}

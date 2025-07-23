@@ -1,0 +1,23 @@
+.stackedCards {
+  position: relative;
+  width: 135px;
+}
+
+.cardTopOnly {
+  position: absolute;
+  left: 0;
+  width: 135px;
+  height: 70px; /* Montre seulement le haut de la carte */
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.cardTopOnly:hover {
+  transform: scale(1.05);
+  z-index: 10;
+}
+
+.selected {
+  border-color: orange;
+}

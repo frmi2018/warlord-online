@@ -1,0 +1,15 @@
+.phaseInfo {
+  flex: 0 0 30%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: #1a1a1a;
+  color: white;
+  text-align: center;
+}
+
+.phaseInfo img {
+  max-width: 200px;
+  align-self: center;
+  margin: 5px;
+}

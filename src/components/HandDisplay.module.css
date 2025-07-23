@@ -1,0 +1,13 @@
+.handSection {
+  background: #1a1a1a;
+  color: white;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.handSection h4 {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  border-bottom: 1px solid #444;
+  padding-bottom: 0.3rem;
+}

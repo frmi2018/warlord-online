@@ -1,0 +1,11 @@
+.battlefield {
+  height: 100vh;
+  width: 100%;
+  background-image: url("/images/media.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
