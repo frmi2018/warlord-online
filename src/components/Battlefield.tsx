@@ -1,4 +1,4 @@
-// src/components/Battlefield.tsx
+// src/components/BattleField.tsx
 import React from "react";
 import type { Dispatch, SetStateAction } from "react";
 import styles from "./BattleField.module.css";
@@ -6,7 +6,7 @@ import PlayerZone from "./PlayerZone";
 
 import type { Ranks, Card } from "../types/types";
 
-interface BattlefieldProps {
+interface BattleFieldProps {
   aiRanks: Ranks;
   aiVisibleRanks: { rank: Card[]; number: number }[];
   aiRankOffset: number;
@@ -24,7 +24,7 @@ interface BattlefieldProps {
   ) => React.ReactNode;
 }
 
-const Battlefield: React.FC<BattlefieldProps> = ({
+const Battlefield: React.FC<BattleFieldProps> = ({
   aiRanks,
   aiVisibleRanks,
   aiRankOffset,
