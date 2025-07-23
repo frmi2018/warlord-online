@@ -1,7 +1,7 @@
 // src/components/BattleField.tsx
 import React from "react";
 import type { Dispatch, SetStateAction } from "react";
-import styles from "./BattleField.module.css";
+import styles from "./Battlefield.module.css";
 import PlayerZone from "./PlayerZone";
 
 import type { Ranks, Card } from "../types/types";
