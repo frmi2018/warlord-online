@@ -1,4 +1,6 @@
 // GamePage.tsx
+import { GameContext } from "../contexts/GameContext";
+
 import GameBoard from "../components/GameBoard";
 
 // Hooks personnalisés
@@ -24,7 +26,6 @@ const GamePage: React.FC = () => {
     logs,
     setLogs,
     // ** useActionPhase
-    actions,
     setActions,
     // ** phaseReadyActions
     hasStarted,
@@ -50,6 +51,7 @@ const GamePage: React.FC = () => {
     // ** phaseDecreeActions
     turn,
     setTurn,
+    actions,
     actionsPlayer,
     setActionsPlayer,
     actionsAi,
@@ -123,24 +125,29 @@ const GamePage: React.FC = () => {
   });
 
   return (
-    <GameBoard
-      playerRanks={playerRanks}
-      aiRanks={aiRanks}
-      phase={phase}
-      turn={turn}
-      logs={logs}
-      hand={playerHand}
-      aiHand={aiHand}
-      actions={actions}
-      actionsPlayer={actionsPlayer}
-      actionsAi={actionsAi}
-      hasStarted={hasStarted}
-      selectedCardsForDiscard={selectedCardsForDiscard}
-      selectedCards={selectedCards}
-      selectedToDisplay={selectedToDisplay}
-      clickMode={clickMode}
-      handleCardClick={handleCardClick}
-    />
+    <GameContext.Provider
+      value={{
+        clickMode,
+        selectedCards,
+        selectedCardsForDiscard,
+        selectedToDisplay,
+        handleCardClick,
+        // GameBoard
+        playerRanks,
+        aiRanks,
+        phase,
+        turn,
+        logs,
+        playerHand,
+        aiHand,
+        actions,
+        actionsPlayer,
+        actionsAi,
+        hasStarted,
+      }}
+    >
+      <GameBoard />
+    </GameContext.Provider>
   );
 };
 

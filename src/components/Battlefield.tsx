@@ -1,17 +1,17 @@
 // src/components/BattleField.tsx
 import React from "react";
 import type { Dispatch, SetStateAction } from "react";
-import styles from "./Battlefield.module.css";
+import { useGameContext } from "../contexts/GameContext";
+import type { Card } from "../types/types";
+
 import PlayerZone from "./PlayerZone";
 
-import type { Ranks, Card } from "../types/types";
+import styles from "./Battlefield.module.css";
 
 interface BattleFieldProps {
-  aiRanks: Ranks;
   aiVisibleRanks: { rank: Card[]; number: number }[];
   aiRankOffset: number;
   setAiRankOffset: Dispatch<SetStateAction<number>>;
-  playerRanks: Ranks;
   playerVisibleRanks: { rank: Card[]; number: number }[];
   playerRankOffset: number;
   setPlayerRankOffset: Dispatch<SetStateAction<number>>;
@@ -25,17 +25,17 @@ interface BattleFieldProps {
 }
 
 const Battlefield: React.FC<BattleFieldProps> = ({
-  aiRanks,
   aiVisibleRanks,
   aiRankOffset,
   setAiRankOffset,
-  playerRanks,
   playerVisibleRanks,
   playerRankOffset,
   setPlayerRankOffset,
   selectedRank,
   renderRank,
 }) => {
+  const { playerRanks, aiRanks } = useGameContext();
+
   return (
     <div className={styles.battlefield}>
       {/* Section IA */}

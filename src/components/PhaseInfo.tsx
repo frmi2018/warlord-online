@@ -1,36 +1,23 @@
-import styles from "./PhaseInfo.module.css";
-import type { Phase, Turn } from "../types/types";
+import { useGameContext } from "../contexts/GameContext";
+
 import { D20 } from "./D20";
 
-interface Props {
-  turn: Turn;
-  phase: Phase;
-  actionsPlayer: number;
-  actionsAi: number;
-  hasStarted: boolean;
-}
+import styles from "./PhaseInfo.module.css";
 
-export default function PhaseInfo({
-  turn,
-  phase,
-  actionsPlayer,
-  actionsAi,
-  hasStarted,
-}: Props) {
+export default function PhaseInfo() {
+  const { turn, phase } = useGameContext();
+
   return (
     <div className={styles.phaseInfo}>
       <img src="/images/warlord-card-back.webp" alt="Dos de carte Warlord" />
 
       <div>
-        <p>Initiative : {turn}</p>
-        <p>Phase actuelle: {phase}</p>
-        <p>
-          Action joueur: {actionsPlayer} / Ai: {actionsAi}
-        </p>
-        <p>Phase commencé ? {hasStarted ? "Oui" : "Non"}</p>
+        <p>version 0.01-250725-frmi@free.fr</p>
         <p>--</p>
-        <p>version 0.01-230725-frmi@free.fr</p>
+        <p>Phase {phase}</p>
+        <p>tour : {turn}</p>
         <p>--</p>
+
         <div
           style={{
             display: "flex",
@@ -38,7 +25,7 @@ export default function PhaseInfo({
             alignContent: "space-around",
           }}
         >
-          <D20 type="normal" value={null} />
+          <D20 type="fail" value={1} />
         </div>
       </div>
     </div>

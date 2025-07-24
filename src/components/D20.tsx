@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 interface D20Props {
   type: "normal" | "critique" | "fail";
@@ -6,12 +6,58 @@ interface D20Props {
   size?: number;
 }
 
+const lines = [
+  [18, 140, 256, 97],
+  [256, 97, 256, 10],
+  [256, 97, 494, 140],
+  [18, 372, 97, 329],
+  [97, 329, 18, 140],
+  [97, 329, 256, 97],
+  [256, 97, 415, 329],
+  [415, 329, 494, 140],
+  [97, 329, 415, 329],
+  [415, 329, 494, 372],
+  [415, 329, 256, 502],
+  [97, 329, 256, 502],
+];
+
+const getFillColor = (type: D20Props["type"]) => {
+  switch (type) {
+    case "critique":
+      return "#007f00"; // vert
+    case "fail":
+      return "#aa0000"; // rouge
+    default:
+      return "#000000"; // noir
+  }
+};
+
 export const D20: React.FC<D20Props> = ({ type, value, size = 100 }) => {
-  const fillColor = {
-    normal: "#000000",
-    critique: "#007f00",
-    fail: "#aa0000",
-  }[type];
+  const [showFinal, setShowFinal] = useState(false);
+  const [displayedValue, setDisplayedValue] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (value === null) return;
+    setShowFinal(false);
+
+    let count = 0;
+
+    const rollingInterval = setInterval(() => {
+      const random = Math.floor(Math.random() * 20) + 1;
+      setDisplayedValue(random);
+      count++;
+
+      if (count > 10) {
+        clearInterval(rollingInterval);
+        setDisplayedValue(value);
+        setShowFinal(true);
+      }
+    }, 50);
+
+    return () => clearInterval(rollingInterval); // nettoyage si le composant est démonté
+  }, [value]);
+
+  const fillColor = showFinal ? getFillColor(type) : "#000000";
 
   return (
     <svg
@@ -20,47 +66,36 @@ export const D20: React.FC<D20Props> = ({ type, value, size = 100 }) => {
       viewBox="0 0 512 512"
       xmlns="http://www.w3.org/2000/svg"
     >
-      {/* Contour général du D20 en forme de pentagone stylisé */}
-      <polygon
-        points="256,10 494,140 494,372 256,502 18,372 18,140"
-        fill="none"
-        stroke="black"
-        strokeWidth="10"
-      />
-
-      {/* Traits internes simplifiés */}
-      <line x1="256" y1="10" x2="256" y2="502" stroke="black" strokeWidth="6" />
-      <line x1="18" y1="140" x2="494" y2="372" stroke="black" strokeWidth="6" />
-      <line x1="494" y1="140" x2="18" y2="372" stroke="black" strokeWidth="6" />
-      <line x1="18" y1="140" x2="256" y2="502" stroke="black" strokeWidth="6" />
-      <line
-        x1="494"
-        y1="140"
-        x2="256"
-        y2="502"
-        stroke="black"
-        strokeWidth="6"
-      />
-
-      {/* Fond intérieur */}
       <polygon
         points="256,10 494,140 494,372 256,502 18,372 18,140"
         fill={fillColor}
-        opacity="1"
+        stroke="white"
+        strokeWidth="10"
       />
 
-      {/* Numéro central */}
+      {lines.map(([x1, y1, x2, y2], i) => (
+        <line
+          key={i}
+          x1={x1}
+          y1={y1}
+          x2={x2}
+          y2={y2}
+          stroke="white"
+          strokeWidth="6"
+        />
+      ))}
+
       <text
         x="256"
-        y="290"
-        fontSize="160"
-        fill="white"
+        y="260"
+        fontSize="100"
         textAnchor="middle"
         dominantBaseline="middle"
         fontFamily="sans-serif"
         fontWeight="bold"
+        fill="white"
       >
-        {value}
+        {displayedValue}
       </text>
     </svg>
   );

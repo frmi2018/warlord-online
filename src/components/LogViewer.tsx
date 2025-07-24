@@ -1,10 +1,10 @@
+// src\components\LogViewer.tsx
+import { useGameContext } from "../contexts/GameContext";
+
 import styles from "./LogViewer.module.css";
 
-interface Props {
-  logs: string[];
-}
-
-export default function LogViewer({ logs }: Props) {
+export default function LogViewer() {
+  const { logs } = useGameContext();
   const lastFiveLogs = logs.slice(-9);
 
   return (

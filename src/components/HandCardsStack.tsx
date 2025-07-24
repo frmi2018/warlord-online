@@ -1,25 +1,20 @@
 // HandCardsStack.tsx - Correction
 import React, { useEffect, useRef } from "react";
-import styles from "./HandCardsStack.module.css";
+import { useGameContext } from "../contexts/GameContext";
+import type { Card } from "../types/types";
+
 import { Card as CardComponent } from "./Card";
-import type { Card, ClickMode } from "../types/types";
+
+import styles from "./HandCardsStack.module.css";
 
 interface HandCardsStackProps {
   hand: Card[];
   stackOffset?: number;
-  selectedCards: Card[];
-  selectedCardsForDiscard: Card[]; // ✅ Ajouter cette prop
-  clickMode: ClickMode; // ✅ Ajouter le clickMode
-  handleCardClick: (card: Card) => void;
 }
 
 const HandCardsStack: React.FC<HandCardsStackProps> = ({
   hand,
-  selectedCards,
-  selectedCardsForDiscard, // ✅ Nouvelle prop
-  clickMode, // ✅ Nouvelle prop
   stackOffset = 70,
-  handleCardClick,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -30,6 +25,9 @@ const HandCardsStack: React.FC<HandCardsStackProps> = ({
       containerRef.current.style.height = `${totalHeight}px`;
     }
   }, [hand, stackOffset]);
+
+  const { clickMode, selectedCards, selectedCardsForDiscard, handleCardClick } =
+    useGameContext();
 
   // ✅ Choisir les bonnes cartes sélectionnées selon le mode
   const isCardSelected = (card: Card): boolean => {

@@ -1,23 +1,19 @@
-// SelectedCardDisplay.tsx
+// src\components\SelectedCardDisplay.tsx
 import React from "react";
+import { useGameContext } from "../contexts/GameContext";
+
 import { Card as CardComponent } from "./Card";
-import type { Card } from "../types/types";
+
 import styles from "./SelectedCardDisplay.module.css";
 
-interface SelectedCardDisplayProps {
-  emptyMessage?: string;
-  selectedToDisplay: Card | null;
-}
+const SelectedCardDisplay: React.FC = () => {
+  const { selectedToDisplay } = useGameContext();
 
-const SelectedCardDisplay: React.FC<SelectedCardDisplayProps> = ({
-  emptyMessage = "Aucune carte sélectionnée",
-  selectedToDisplay,
-}) => {
   if (!selectedToDisplay) {
     return (
       <div className={styles.selectedCardDisplay}>
         <div className={styles.card}>
-          <p>{emptyMessage}</p>
+          <p>Aucune carte sélectionnée</p>
         </div>
       </div>
     );

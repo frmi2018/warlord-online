@@ -1,16 +1,10 @@
 import React from "react";
+import { useGameContext } from "../contexts/GameContext";
 import styles from "./ActionButtons.module.css";
 
-interface Action {
-  label: React.ReactNode;
-  onClick: () => void;
-}
+const ActionButtons: React.FC = () => {
+  const { actions } = useGameContext();
 
-interface ActionButtonsProps {
-  actions: Action[];
-}
-
-const ActionButtons: React.FC<ActionButtonsProps> = ({ actions }) => {
   return (
     <div className={styles.actionsSection}>
       <h4>Actions</h4>

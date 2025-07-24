@@ -1,33 +1,31 @@
 // src/components/GameRanks.tsx
 import type { Dispatch, SetStateAction } from "react";
+import { useGameContext } from "../contexts/GameContext";
 import type { Ranks, Card } from "../types/types";
-import styles from "./GameRanks.module.css";
+
 import { Card as CardComponent } from "./Card";
 import Battlefield from "./Battlefield";
 
+import styles from "./GameRanks.module.css";
+
 interface Props {
-  aiRanks: Ranks;
-  playerRanks: Ranks;
   selectedRank: number;
   setSelectedRank: Dispatch<SetStateAction<number>>;
   aiRankOffset: number;
   setAiRankOffset: Dispatch<SetStateAction<number>>;
   playerRankOffset: number;
   setPlayerRankOffset: Dispatch<SetStateAction<number>>;
-  handleCardClick: (card: Card) => void; // ✅ Ajout de handleCardClick
 }
 
 export default function GameRanks({
-  aiRanks,
-  playerRanks,
   selectedRank,
   setSelectedRank,
   aiRankOffset,
   setAiRankOffset,
   playerRankOffset,
   setPlayerRankOffset,
-  handleCardClick, // ✅ Recevoir handleCardClick
 }: Props) {
+  const { playerRanks, aiRanks, handleCardClick } = useGameContext();
   const renderCard = (card: Card, isPlayer: boolean, isSelected: boolean) => {
     return (
       <div
@@ -110,11 +108,9 @@ export default function GameRanks({
 
   return (
     <Battlefield
-      aiRanks={aiRanks}
       aiVisibleRanks={aiVisibleRanks}
       aiRankOffset={aiRankOffset}
       setAiRankOffset={setAiRankOffset}
-      playerRanks={playerRanks}
       playerVisibleRanks={playerVisibleRanks}
       playerRankOffset={playerRankOffset}
       setPlayerRankOffset={setPlayerRankOffset}

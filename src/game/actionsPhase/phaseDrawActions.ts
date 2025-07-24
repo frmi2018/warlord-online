@@ -73,7 +73,6 @@ export const phaseDrawActions = ({
     if (playerHand.length > 0) {
       // Afficher les instructions
       const selectedCount = selectedCardsForDiscard.length;
-      console.log(playerHand.length, selectedCount);
       const instruction =
         selectedCount === 0
           ? "Cliquez sur les cartes à défausser"

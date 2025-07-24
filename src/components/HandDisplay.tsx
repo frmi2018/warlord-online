@@ -1,38 +1,24 @@
 // HandDisplay.tsx - Correction
 import React from "react";
-import styles from "./HandDisplay.module.css";
+import { useGameContext } from "../contexts/GameContext";
 import HandCardsStack from "./HandCardsStack";
-import type { Card, ClickMode } from "../types/types";
+import styles from "./HandDisplay.module.css";
 
 interface HandDisplayProps {
-  hand: Card[];
+  playerType: "ai" | "player";
   title?: string;
-  emptyMessage?: string;
-  selectedCards: Card[];
-  selectedCardsForDiscard: Card[]; // ✅ Ajouter
-  clickMode: ClickMode; // ✅ Ajouter
-  handleCardClick: (card: Card) => void;
 }
 
-const HandDisplay: React.FC<HandDisplayProps> = ({
-  hand,
-  title,
-  selectedCards,
-  selectedCardsForDiscard, // ✅ Nouvelle prop
-  clickMode, // ✅ Nouvelle prop
-  handleCardClick,
-}) => {
+const HandDisplay: React.FC<HandDisplayProps> = ({ playerType, title }) => {
+  const { playerHand, aiHand } = useGameContext();
+
+  const hand = playerType === "ai" ? aiHand : playerHand;
+
   return (
     <div className={styles.handSection}>
       <h4>{title}</h4>
       <div className={styles.handCardsContainer}>
-        <HandCardsStack
-          hand={hand}
-          selectedCards={selectedCards}
-          selectedCardsForDiscard={selectedCardsForDiscard} // ✅ Passer la prop
-          clickMode={clickMode} // ✅ Passer la prop
-          handleCardClick={handleCardClick}
-        />
+        <HandCardsStack hand={hand} />
       </div>
     </div>
   );
