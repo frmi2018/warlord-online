@@ -1,9 +1,7 @@
-// src\components\SelectedCardDisplay.tsx
+// src/components/SelectedCardDisplay.tsx
 import React from "react";
 import { useGameContext } from "../contexts/GameContext";
-
-import { Card as CardComponent } from "./Card";
-
+import { Card } from "./Card";
 import styles from "./SelectedCardDisplay.module.css";
 
 const SelectedCardDisplay: React.FC = () => {
@@ -19,9 +17,16 @@ const SelectedCardDisplay: React.FC = () => {
     );
   }
 
+  // Créer une copie de la carte sans la propriété selected
+  // pour éviter la bordure jaune dans l'affichage grand format
+  const cardForDisplay = {
+    ...selectedToDisplay,
+    selected: false, // Forcer selected à false
+  };
+
   return (
     <div className={styles.selectedCardDisplay}>
-      <CardComponent card={selectedToDisplay} />
+      <Card card={cardForDisplay} />
     </div>
   );
 };

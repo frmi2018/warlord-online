@@ -1,4 +1,4 @@
-// src/game/types.ts
+// src/types/types.ts
 
 // Liste des différentes phases du jeu
 export type Phase =
@@ -12,18 +12,37 @@ export type Phase =
 // Indique à qui est le tour
 export type Turn = "player" | "ai";
 
-// Type de carte
-// Type de carte
+// TODO 1 - Définition des icônes de classe
+export const classIcons: Record<string, string> = {
+  starburst: "✨", // Cleric
+  gauntlet: "🛡️", // Fighter
+  glove: "🧤", // Rogue
+  scroll: "📜", // Wizard
+  oval: "⭕", // Multi/classless
+};
+
+// TODO 1 - Définition des couleurs de faction
+export const factionColors: Record<string, string> = {
+  Deverenian: "#6d0202ff",
+  Dwarf: "#916412ff",
+  Elf: "#ffffffff",
+  "Free Kingdoms": "#dd982fff",
+  Nothrog: "#075a2aff",
+  "The Chosen": "#58095fff",
+  Mercenary: "#2197dbff",
+};
+
+// Liste des éléments sur une carte
 export interface Card {
   id: string;
   name: string;
 
   // Combat & caractéristiques
   level: number;
-  attackValues: number[];
-  armorClass: number;
-  skill: number;
-  hitPoints: number;
+  attackValues?: number[] | null;
+  armorClass?: number | null;
+  skill?: number | null;
+  hitPoints?: number | null;
 
   // Faction et style
   faction?: string;
@@ -31,8 +50,10 @@ export interface Card {
 
   // Classe et alignement
   classIcon: "starburst" | "gauntlet" | "glove" | "scroll" | "oval";
-  className: string;
-  alignment: "good" | "evil";
+  alignment?: "good" | "evil";
+
+  // TODO 2 - Type de carte
+  cardType?: "character" | "item" | "action";
 
   // Divers
   traits?: string[];
@@ -44,7 +65,7 @@ export interface Card {
   movedThisTurn?: boolean;
   selected?: boolean;
 
-  // ✅ Nouvelle propriété pour indiquer la provenance
+  // Position dans le jeu
   zone?: "playerHand" | "aiHand" | "ranks" | "discard";
 }
 
@@ -71,5 +92,5 @@ export interface Action {
   visible?: boolean;
 }
 
-// Dans types.ts
+// Etat de la souris lors du clic
 export type ClickMode = "display" | "select" | "discard" | "move" | "attack";
