@@ -61,6 +61,7 @@ export const phaseReadyActions = ({
         try {
           setLogs(prevLogs => [...prevLogs.slice(-9), "Fin du tour READY"]);
           setHasStarted(false);
+
           handleNextPhase();
         } catch (error) {
           console.error("🔍 DEBUG: Erreur dans onClick:", error);

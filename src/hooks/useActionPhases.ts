@@ -199,6 +199,7 @@ export function useActionPhases({
       setAiDiscardPile,
       setClickMode,
       clickMode,
+      phase,
       handleNextPhase,
       hasAIDiscardedRef,
       hasAIDrawnRef,
@@ -223,6 +224,7 @@ export function useActionPhases({
     setAiDiscardPile,
     setClickMode,
     clickMode,
+    phase,
     handleNextPhase,
   ]);
 

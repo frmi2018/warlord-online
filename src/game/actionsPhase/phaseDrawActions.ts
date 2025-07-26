@@ -1,7 +1,8 @@
 // src/game/actionsPhase/phaseDrawActions.ts
 
-import type { Action, Card } from "../../types/types";
 import type { Dispatch, SetStateAction } from "react";
+
+import type { Action, Card, Phase } from "../../types/types";
 import {
   handlePlayerDiscard,
   handleAIDiscard,
@@ -34,6 +35,7 @@ interface PhaseDrawActionsProps {
     SetStateAction<"display" | "select" | "discard" | "move" | "attack">
   >;
   clickMode: "display" | "select" | "discard" | "move" | "attack";
+  phase: Phase;
 }
 
 export const phaseDrawActions = ({
@@ -59,18 +61,18 @@ export const phaseDrawActions = ({
   hasAIDrawnRef,
   setClickMode,
   clickMode,
+  phase,
 }: PhaseDrawActionsProps): Action[] => {
   const HAND_SIZE = 5;
   const actions: Action[] = [];
 
   // === ÉTAPE 1 : DÉFAUSSE DU JOUEUR ===
   if (discardStep === "player") {
-    // Activer le mode discard au début de l'étape (seulement si pas déjà actif)
-    if (clickMode !== "discard") {
-      setClickMode("discard");
-    }
-
     if (playerHand.length > 0) {
+      // Activer le mode discard si pas déjà actif
+      if (clickMode !== "discard" && phase === "draw") {
+        setClickMode("discard");
+      }
       // Afficher les instructions
       const selectedCount = selectedCardsForDiscard.length;
       const instruction =

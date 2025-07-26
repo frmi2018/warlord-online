@@ -35,15 +35,27 @@ export function handleSetupPhase(
 ) {
   setLogs(prevLogs => [...prevLogs.slice(-9), "Choix des cartes de départ."]);
 
+  // Créer le playerDeckWithId à partir de demoDeck en modifiant id de chaque carte sots-numero-p
+  const playerDeckWithIds = demoDeck.map((card, index) => ({
+    ...card,
+    id: `${card.id}-p${index + 1}`,
+  }));
+
+  // Créer le aiDeckWithIds à partir de demoDeck en modifiant id de chaque carte sots-numero-ai
+  const aiDeckWithIds = demoDeck.map((card, index) => ({
+    ...card,
+    id: `${card.id}-ai${index + 1}`,
+  }));
+
   // Génère les cartes de départ et le deck restant pour le joueur à partir du deck démo
   const {
     startingCards: playerStartingCards,
     remainingDeck: playerRemainingDeck,
-  } = buildInitialSetup([...demoDeck]);
+  } = buildInitialSetup([...playerDeckWithIds]);
 
   // Même chose pour l'IA (on utilise aussi le même deck démo ici)
   const { startingCards: aiStartingCards, remainingDeck: aiRemainingDeck } =
-    buildInitialSetup([...demoDeck]);
+    buildInitialSetup([...aiDeckWithIds]);
 
   // Ajout des zones aux decks restants
   playerRemainingDeck.forEach(c => (c.zone = "playerDeck"));
