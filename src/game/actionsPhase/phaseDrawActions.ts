@@ -77,7 +77,7 @@ export const phaseDrawActions = ({
       const selectedCount = selectedCardsForDiscard.length;
       const instruction =
         selectedCount === 0
-          ? "Cliquez sur les cartes à défausser"
+          ? "Cliquez sur les cartes à défausser 👉"
           : `${selectedCount} carte(s) sélectionnée(s)`;
 
       actions.push({
@@ -156,7 +156,7 @@ export const phaseDrawActions = ({
     hasAIDiscardedRef.current = true;
 
     actions.push({
-      label: "L'IA réfléchit...",
+      label: "🤔 L'IA réfléchit...",
       onClick: () => {},
       enabled: false,
       description: "L'intelligence artificielle choisit ses cartes à défausser",

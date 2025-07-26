@@ -57,9 +57,9 @@ const PlayerZone: React.FC<PlayerZoneProps> = ({
           </button>
 
           {isPlayer ? (
-            <D20 type={"normal"} value={playerDiceValue} size={80} />
+            <D20 value={playerDiceValue} size={80} />
           ) : (
-            <D20 type={"normal"} value={aiDiceValue} size={80} />
+            <D20 value={aiDiceValue} size={80} />
           )}
 
           <button

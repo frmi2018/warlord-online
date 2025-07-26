@@ -33,8 +33,10 @@ export const handleInitiativePhase = (
     const iaModifier = 0;
 
     const playerResult: DiceResult = rollD20WithModifier(playerModifier);
-    setPlayerDiceValue(playerResult.roll);
     const iaResult: DiceResult = rollD20WithModifier(iaModifier);
+
+    // Affichage du dé
+    setPlayerDiceValue(playerResult.roll);
     setAiDiceValue(iaResult.roll);
 
     const logs: string[] = [];

@@ -1,18 +1,30 @@
-// src/game/actions/toggleCardSelection.ts
 import type { Card } from "../types/types";
 
-/**
- * Bascule la sélection d'une carte (sélectionne si pas sélectionnée, désélectionne si sélectionnée).
- * @param selectedCards Tableau des cartes déjà sélectionnées
- * @param card La carte à basculer
- * @returns Le nouveau tableau avec la carte ajoutée ou retirée
- */
-export function toggleCardSelection(selectedCards: Card[], card: Card): Card[] {
-  const isSelected = selectedCards.some(c => c.id === card.id);
+export function toggleCardSelection(
+  card: Card,
+  selectedCards: Card[],
+  playerHand: Card[],
+): {
+  updatedSelected: Card[];
+  updatedHand: Card[];
+  logMessage: string;
+} {
+  const isAlreadySelected = selectedCards.some(c => c.id === card.id);
 
-  if (isSelected) {
-    return selectedCards.filter(c => c.id !== card.id);
+  if (isAlreadySelected) {
+    return {
+      updatedSelected: selectedCards.filter(c => c.id !== card.id),
+      updatedHand: playerHand.map(c =>
+        c.id === card.id ? { ...c, selected: false } : c,
+      ),
+      logMessage: `Carte ${card.name} désélectionnée`,
+    };
   } else {
-    return [...selectedCards, card];
+    const updatedCard = { ...card, selected: true };
+    return {
+      updatedSelected: [...selectedCards, updatedCard],
+      updatedHand: playerHand.map(c => (c.id === card.id ? updatedCard : c)),
+      logMessage: `Carte ${card.name} sélectionnée`,
+    };
   }
 }

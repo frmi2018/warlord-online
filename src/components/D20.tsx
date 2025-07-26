@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 
 interface D20Props {
-  type: "normal" | "critique" | "fail";
   value: number | null;
   size?: number;
 }
@@ -21,18 +20,18 @@ const lines = [
   [97, 329, 256, 502],
 ];
 
-const getFillColor = (type: D20Props["type"]) => {
-  switch (type) {
-    case "critique":
+const getFillColor = (value: number) => {
+  switch (value) {
+    case 20:
       return "#007f00"; // vert
-    case "fail":
+    case 1:
       return "#aa0000"; // rouge
     default:
       return "#000000"; // noir
   }
 };
 
-export const D20: React.FC<D20Props> = ({ type, value, size = 100 }) => {
+export const D20: React.FC<D20Props> = ({ value, size = 100 }) => {
   const [showFinal, setShowFinal] = useState(false);
   const [displayedValue, setDisplayedValue] = useState<number | null>(null);
 
@@ -57,7 +56,8 @@ export const D20: React.FC<D20Props> = ({ type, value, size = 100 }) => {
     return () => clearInterval(rollingInterval); // nettoyage si le composant est démonté
   }, [value]);
 
-  const fillColor = showFinal ? getFillColor(type) : "#000000";
+  const fillColor =
+    showFinal && value !== null ? getFillColor(value) : "#000000";
 
   return (
     <svg

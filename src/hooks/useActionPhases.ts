@@ -54,17 +54,10 @@ interface Props {
   setActionsPlayer: Dispatch<SetStateAction<number>>;
   actionsAi: number;
   setActionsAi: Dispatch<SetStateAction<number>>;
-  // decreeStep: string;
-  // setDecreeStep: Dispatch<SetStateAction<string>>;
   phase: Phase;
   selectedCards: Card[]; // Nouveau : tableau des cartes sélectionnées
   setSelectedCards: Dispatch<SetStateAction<Card[]>>; // Nouveau : setter
   handleNextPhase: () => void;
-  // selectedCard: Card | null;
-  // targetCard: Card | null;
-  // hasAIDiscardedRef: React.MutableRefObject<boolean>;
-  // hasAIDrawnRef: React.MutableRefObject<boolean>;
-  // hasPhaseHandledRef: React.MutableRefObject<boolean>;
   clickMode: ClickMode;
   setClickMode: Dispatch<SetStateAction<ClickMode>>;
   setPlayerDiceValue: Dispatch<SetStateAction<number>>;
