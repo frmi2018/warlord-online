@@ -12,7 +12,7 @@ export default function PhaseInfo() {
       <img src="/images/warlord-card-back.webp" alt="Dos de carte Warlord" />
 
       <div>
-        <p>version 0.01-260725-frmi@free.fr</p>
+        <p>version 0.02-260725-frmi@free.fr</p>
         <p>--</p>
         <p>Phase {phase}</p>
         <p>tour : {turn}</p>

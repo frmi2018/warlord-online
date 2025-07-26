@@ -13,6 +13,7 @@ export const demoDeck: Card[] = [
     faction: "Deverenian",
     classIcon: "starburst",
     alignment: "evil",
+    cardType: "character",
     traits: [],
     unique: false,
   },
@@ -27,9 +28,14 @@ export const demoDeck: Card[] = [
     faction: "Dwarf",
     classIcon: "gauntlet",
     alignment: "good",
+    cardType: "character",
     traits: ["Warlord"],
     unique: true,
-    // TODO Bonus et Order
+    bonus: ["Dwarves in your army are +1 level for equipping items."],
+    order: ["order"],
+    action: [
+      "Once per turn, search your deck for an item of level 5 or less, show it to the others players, then add it to your hand.",
+    ],
   },
   {
     id: "sost-28",
@@ -42,9 +48,11 @@ export const demoDeck: Card[] = [
     faction: "Dwarf",
     classIcon: "glove",
     alignment: "good",
+    cardType: "character",
     traits: [],
     unique: false,
-    // TODO Order
+    order: ["order"],
+    action: ["Discard two cards from your hand to move Ash backward one rank."],
   },
   {
     id: "sost-29",
@@ -57,6 +65,7 @@ export const demoDeck: Card[] = [
     faction: "Dwarf",
     classIcon: "gauntlet",
     alignment: "good",
+    cardType: "character",
     traits: [],
     unique: false,
   },
@@ -71,6 +80,7 @@ export const demoDeck: Card[] = [
     faction: "Dwarf",
     classIcon: "gauntlet",
     alignment: "good",
+    cardType: "character",
     traits: [],
     unique: false,
   },
@@ -85,9 +95,13 @@ export const demoDeck: Card[] = [
     faction: "Dwarf",
     classIcon: "starburst",
     alignment: "good",
+    cardType: "character",
     traits: [],
     unique: false,
-    // TODO Order
+    order: ["order"],
+    action: [
+      "Kill Knowledge to search your deck for a card with the Gargoyle trait. Show it to the other players, then place the Gargoyle on top of the deck.",
+    ],
   },
   {
     id: "sost-34",
@@ -100,6 +114,7 @@ export const demoDeck: Card[] = [
     faction: "Dwarf",
     classIcon: "glove",
     alignment: "good",
+    cardType: "character",
     traits: [],
     unique: false,
   },
@@ -114,9 +129,10 @@ export const demoDeck: Card[] = [
     faction: "Dwarf",
     classIcon: "gauntlet",
     alignment: "good",
+    cardType: "character",
     traits: [],
     unique: false,
-    // TODO Bonus
+    bonus: ["Axe has +2 ATK while he is adjacent to Hammer."],
   },
   {
     id: "sost-36",
@@ -129,9 +145,10 @@ export const demoDeck: Card[] = [
     faction: "Dwarf",
     classIcon: "gauntlet",
     alignment: "good",
+    cardType: "character",
     traits: [],
     unique: false,
-    // TODO Bonus
+    bonus: ["Hammer has +2 AC while he is adjacent to Axe."],
   },
   {
     id: "sost-37",
@@ -144,6 +161,7 @@ export const demoDeck: Card[] = [
     faction: "Dwarf",
     classIcon: "gauntlet",
     alignment: "evil",
+    cardType: "character",
     traits: [],
     unique: false,
   },
@@ -158,9 +176,10 @@ export const demoDeck: Card[] = [
     faction: "Dwarf",
     classIcon: "starburst",
     alignment: "good",
+    cardType: "character",
     traits: [],
     unique: false,
-    // TODO Bonus
+    bonus: ["Dirge is +1 level for equipping items."],
   },
   {
     id: "sost-50",
@@ -173,6 +192,7 @@ export const demoDeck: Card[] = [
     faction: "Elf",
     classIcon: "gauntlet",
     alignment: "evil",
+    cardType: "character",
     traits: [],
     unique: false,
   },
@@ -187,6 +207,7 @@ export const demoDeck: Card[] = [
     faction: "Free Kingdoms",
     classIcon: "gauntlet",
     alignment: "good",
+    cardType: "character",
     traits: [],
     unique: false,
   },
@@ -204,7 +225,7 @@ export const demoDeck: Card[] = [
     cardType: "character",
     traits: ["Barbarian"],
     unique: false,
-    // TODO bonus
+    malus: ["Varg may enter play as if he were 3rd level, but becomes spent."],
   },
   {
     id: "sots-89",
@@ -220,7 +241,7 @@ export const demoDeck: Card[] = [
     cardType: "character",
     traits: [],
     unique: false,
-    // TODO bonus
+    malus: ["Phar'Dunn may only move backward using a card effect."],
   },
   {
     id: "sots-116",
@@ -231,7 +252,7 @@ export const demoDeck: Card[] = [
     cardType: "item",
     traits: ["Armor"],
     unique: false,
-    // réservé à certaine classIcon
+    only: ["gauntlet", "starburst"],
   },
   {
     id: "sots-117",
@@ -251,6 +272,8 @@ export const demoDeck: Card[] = [
     cardType: "action",
     traits: ["Order"],
     unique: false,
+    order: ["order"],
+    action: ["Move this fighter forward one rank"],
   },
   {
     id: "sots-226",
@@ -266,5 +289,32 @@ export const demoDeck: Card[] = [
     cardType: "character",
     traits: ["monster"],
     unique: false,
+  },
+  {
+    id: "sots-239",
+    name: "Tanner Trollson",
+    level: 1,
+    attackValues: [1],
+    armorClass: 11,
+    skill: 1,
+    hitPoints: 1,
+    faction: "Mercenary",
+    classIcon: "gauntlet",
+    alignment: "good",
+    cardType: "character",
+    traits: [],
+    unique: false,
+  },
+  {
+    id: "sots-258",
+    name: "Deverenian Shield",
+    level: 4,
+    armorBonus: 2,
+    classIcon: "oval",
+    cardType: "item",
+    traits: ["Shield"],
+    unique: false,
+    only: ["gauntlet", "starburst"],
+    malus: ["This character may not use multiple strikes."],
   },
 ];

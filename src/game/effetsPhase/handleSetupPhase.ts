@@ -45,16 +45,23 @@ export function handleSetupPhase(
   const { startingCards: aiStartingCards, remainingDeck: aiRemainingDeck } =
     buildInitialSetup([...demoDeck]);
 
+  // Ajout des zones aux decks restants
+  playerRemainingDeck.forEach(c => (c.zone = "playerDeck"));
+  aiRemainingDeck.forEach(c => (c.zone = "aiDeck"));
+
   // Message de confirmation
   setLogs(prevLogs => [...prevLogs.slice(-9), "Positionnement des cartes."]);
 
   // Crée les rangées initiales du joueur avec ses cartes de départ
   const initialPlayerRanks = prepareStartingArmyFromCards(playerStartingCards);
   setPlayerRanks(initialPlayerRanks);
+  playerStartingCards.forEach(c => (c.zone = "playerRanks"));
 
   // Même chose pour l'IA
   const initialAiRanks = prepareStartingArmyFromCards(aiStartingCards);
+  console.log(aiStartingCards);
   setAiRanks(initialAiRanks);
+  aiStartingCards.forEach(c => (c.zone = "aiRanks"));
 
   // Message de confirmation
   setLogs(prevLogs => [...prevLogs.slice(-9), "Création des decks."]);

@@ -13,6 +13,11 @@
   color: black;
 }
 
+.stats {
+  display: flex;
+  justify-content: space-between;
+}
+
 .name {
   font-weight: bold;
   font-size: 0.75rem; /* 75% de 1rem */
@@ -22,40 +27,73 @@
   white-space: nowrap;
 }
 
-.image {
-  height: 60px;
-  background-color: dimgray;
+.imageContainer {
+  position: relative;
+  color: white;
+  font-size: 0.45rem; /* 75% de 0.9rem */
 }
 
 .classLine {
+  position: absolute;
+  bottom: -26px;
+  left: -5px;
+  width: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 0.375rem; /* 75% de 0.5rem */
-  margin: 0.15rem 0;
+  justify-content: space-between;
 }
 
-.classCircle {
-  width: 21px; /* 75% de 28px */
-  height: 21px;
+.image {
+  height: 75px;
+  background-color: dimgray;
+}
+
+/* conteneur classe / alignement */
+.classCircleWrapper {
+  position: relative;
+  width: 30px;
+  height: 38px;
   border-radius: 50%;
-  font-size: 0.75rem; /* 75% de 1rem */
+}
+
+/* Cercle extérieur (bordure dégradée) */
+.classCircleBorder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-image: linear-gradient(135deg, yellow, orange, yellow);
+  z-index: 0;
+}
+
+/* Cercle intérieur (fond gris + contenu) */
+.classCircleContent {
+  position: absolute;
+  top: 1px; /* ajuster selon l’épaisseur de la “bordure” */
+  left: 1px;
+  width: 28px; /* 21 - 2*2 */
+  height: 36px;
+  background-color: #7f7f7f;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: bold;
+  z-index: 1;
+  overflow: hidden;
 }
 
-.good {
-  background-color: white;
-  color: black;
-  border: 1.5px solid black; /* 75% de 2px */
+.classIconImage {
+  /* width: 75%;
+  height: 75%; */
+  object-fit: contain;
 }
 
-.evil {
-  background-color: black;
-  color: white;
-  border: 1.5px solid white;
+.levelText {
+  position: absolute;
+  top: 13px;
+  left: 12px;
 }
 
 .factionLine {
@@ -63,17 +101,7 @@
   align-items: center;
   justify-content: center;
   gap: 0.375rem; /* 75% de 0.5rem */
-  margin: 0.15rem 0;
-}
-
-.levelText {
-  font-size: 0.675rem; /* 75% de 0.9rem */
-}
-
-.stats {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 0.15rem;
+  padding-top: 0.6rem;
 }
 
 .faction {
@@ -81,20 +109,6 @@
   font-weight: bold;
 }
 
-.className {
-  font-size: 0.6rem; /* 75% de 0.8rem */
-}
-
-.traits {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.15rem;
-  font-size: 0.525rem; /* 75% de 0.7rem */
-}
-
 .trait {
-  background-color: #ddd;
-  padding: 0.075rem 0.225rem; /* 75% de 0.1rem / 0.3rem */
-  border-radius: 3px; /* 75% de 4px */
+  font-size: 0.6rem; /* 75% de 0.8rem */
 }

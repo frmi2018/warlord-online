@@ -13,13 +13,13 @@ export type Phase =
 export type Turn = "player" | "ai";
 
 // TODO 1 - Définition des icônes de classe
-export const classIcons: Record<string, string> = {
-  starburst: "✨", // Cleric
-  gauntlet: "🛡️", // Fighter
-  glove: "🧤", // Rogue
-  scroll: "📜", // Wizard
-  oval: "⭕", // Multi/classless
-};
+// export const classIcons: Record<string, string> = {
+//   starburst: "✨", // Cleric
+//   gauntlet: "🛡️", // Fighter
+//   glove: "🧤", // Rogue
+//   scroll: "📜", // Wizard
+//   oval: "⭕", // Multi/classless
+// };
 
 // TODO 1 - Définition des couleurs de faction
 export const factionColors: Record<string, string> = {
@@ -39,9 +39,9 @@ export interface Card {
 
   // Combat & caractéristiques
   level: number;
-  attackValues?: number[] | null;
-  armorClass?: number | null;
-  skill?: number | null;
+  attackValues?: number[];
+  armorClass?: number;
+  skill?: number;
   hitPoints?: number | null;
 
   // Faction et style
@@ -53,11 +53,28 @@ export interface Card {
   alignment?: "good" | "evil";
 
   // TODO 2 - Type de carte
-  cardType?: "character" | "item" | "action";
+  cardType: "character" | "item" | "action";
 
   // Divers
   traits?: string[];
   unique?: boolean;
+
+  // Items / actions
+  only?: string[];
+  attackBonus?: number | null;
+  armorBonus?: number | null;
+  malus?: string[];
+  bonus?: string[];
+  order?: ["order" | "spend" | "react"];
+  action?: string[];
+  // conditions: (state, card) => card.ready && hasTargetInRange(card, state),
+  // execute: (state, card) => {
+  //   const newState = cloneState(state);
+  //   const target = chooseWeakestTarget(state);
+  //   applyDamage(target, 2);
+  //   card.tapped = true;
+  //   return newState;
+  // }
 
   // État en jeu
   stunned?: boolean;
@@ -66,7 +83,15 @@ export interface Card {
   selected?: boolean;
 
   // Position dans le jeu
-  zone?: "playerHand" | "aiHand" | "ranks" | "discard";
+  zone?:
+    | "playerDeck"
+    | "aiDeck"
+    | "playerHand"
+    | "aiHand"
+    | "playerRanks"
+    | "aiRanks"
+    | "playerdiscard"
+    | "aiDiscard";
 }
 
 // Tableau de cartes par rang (4 rangs : 0 = rang 1, 1 = rang 2, etc.)
@@ -94,3 +119,12 @@ export interface Action {
 
 // Etat de la souris lors du clic
 export type ClickMode = "display" | "select" | "discard" | "move" | "attack";
+
+// interface CardAction {
+//   id: string;
+//   label: string;
+//   description?: string;
+//   cost?: number;
+//   conditions: (state: GameState, source: Card) => boolean;
+//   execute: (state: GameState, source: Card) => GameState;
+// }

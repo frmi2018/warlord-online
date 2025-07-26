@@ -115,6 +115,12 @@ export const updateRanksAfterAttack = (
   if (idx === -1) return newRanks;
 
   const card = newRanks[rankIndex][idx];
+
+  if (typeof card.hitPoints !== "number") {
+    console.warn("Cette carte ne possède pas de points de vie :", card.name);
+    return newRanks; // ou autre traitement selon ton besoin
+  }
+
   const hp = card.hitPoints - dmg;
 
   if (hp <= 0) {

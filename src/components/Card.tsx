@@ -1,6 +1,6 @@
 // src/components/Card.tsx
 import type { Card as CardType } from "../types/types";
-import { classIcons, factionColors } from "../types/types";
+import { factionColors } from "../types/types";
 import styles from "./Card.module.css";
 
 interface CardProps {
@@ -20,20 +20,26 @@ export const Card = ({ card, onClick }: CardProps) => {
     classIcon,
     alignment,
     traits,
-    cardType = "character", // Valeur par défaut pour les cartes existantes
+    cardType,
+    zone,
   } = card;
 
   // TODO 3 - Fonction pour déterminer si on doit afficher la bordure jaune
   const shouldShowYellowBorder = (): boolean => {
     if (!card?.selected) return false;
 
-    // Bordure jaune uniquement si sélectionné ET dans la main ou rangs du joueur
-    return card.zone === "playerHand" || card.zone === "ranks";
+    // Bordure jaune uniquement si sélectionné ET dans une zone possible
+    return (
+      zone === "playerHand" ||
+      zone === "aiHand" ||
+      zone === "playerRanks" ||
+      zone === "aiRanks"
+    );
   };
 
   // TODO 2 & 3 - Logique de couleur de bordure
   const computedBorderColor = (): string => {
-    // Si doit afficher bordure jaune (sélectionné + zone joueur)
+    // Si doit afficher bordure jaune (sélectionné + zone possible)
     if (shouldShowYellowBorder()) {
       return "yellow";
     }
@@ -60,7 +66,10 @@ export const Card = ({ card, onClick }: CardProps) => {
       role="button"
       aria-label={name}
       className={styles.card}
-      onClick={onClick}
+      onClick={() => {
+        console.log({ card });
+        onClick?.(); // exécute si défini
+      }}
       style={{
         ...borderStyle,
       }}
@@ -69,11 +78,15 @@ export const Card = ({ card, onClick }: CardProps) => {
         <div className={styles.stats}>
           {attackValues ? (
             <span className={styles.attack}>⚔️ {attackValues.join(" / ")}</span>
-          ) : null}
+          ) : (
+            <span className={styles.attack}>⚔️</span>
+          )}
 
           {armorClass ? (
             <span className={styles.armor}>🛡️ {armorClass}</span>
-          ) : null}
+          ) : (
+            <span className={styles.armor}>🛡️</span>
+          )}
         </div>
       ) : (
         <span className={styles.armor}>&nbsp;</span>
@@ -81,43 +94,78 @@ export const Card = ({ card, onClick }: CardProps) => {
 
       <div className={styles.name}>{name}</div>
 
-      <div className={styles.image}></div>
+      {/* Image + classe icone */}
+      <div className={styles.imageContainer}>
+        <div className={styles.image}></div>
 
-      <div className={styles.classLine}>
-        <span
-          className={`${styles.classCircle} ${
-            alignment === "good" ? styles.good : styles.evil
-          }`}
-        >
-          {classIcons[classIcon]}
-        </span>
-        <span className={styles.levelText}>{level}</span>
-        <span style={{ color: "white" }}>{cardType.toUpperCase()}</span>
+        <div className={styles.classLine}>
+          {/* Classe / Alignement */}
+          <div className={styles.classCircleWrapper}>
+            <div className={styles.classCircleBorder}></div>
+            <div className={styles.classCircleContent}>
+              <>
+                {alignment === "good" || alignment === "evil" ? (
+                  <img
+                    src={`/images/${classIcon}-${alignment}.png`}
+                    alt={classIcon}
+                    className={styles.classIconImage}
+                  />
+                ) : card.cardType === "action" ? (
+                  <img
+                    src={`/images/${classIcon}-action.png`}
+                    alt={classIcon}
+                    className={styles.classIconImage}
+                  />
+                ) : card.cardType === "item" ? (
+                  <img
+                    src={`/images/${classIcon}-item.png`}
+                    alt={classIcon}
+                    className={styles.classIconImage}
+                  />
+                ) : null}
+              </>
+
+              <span
+                className={styles.levelText}
+                style={{ color: alignment === "good" ? "black" : "white" }}
+              >
+                {level}
+              </span>
+            </div>
+          </div>
+          {/* Type de carte */}
+          <span>{cardType.toUpperCase()}</span>
+        </div>
       </div>
 
       <div className={styles.factionLine}>
         {faction && <div className={styles.faction}>{faction}</div>}
+        {traits && traits.length > 0 && (
+          <div className={styles.traits}>
+            {traits.map((trait, i) => (
+              <span key={i} className={styles.trait}>
+                {trait}
+              </span>
+            ))}
+          </div>
+        )}
       </div>
 
-      {traits && traits.length > 0 && (
-        <div className={styles.traits}>
-          {traits.map((trait, i) => (
-            <span key={i} className={styles.trait}>
-              {trait}
-            </span>
-          ))}
-        </div>
-      )}
+      <button>Show text</button>
 
-      {cardType !== "action" && cardType !== "item" ? (
-        <div className={styles.stats}>
-          {skill ? <span className={styles.skill}>💎 {skill}</span> : null}
-
-          {hitPoints ? <span className={styles.hp}>❤️ {hitPoints}</span> : null}
-        </div>
-      ) : (
-        <span className={styles.armor}>&nbsp;</span>
-      )}
+      <div className={styles.stats}>
+        {cardType !== "action" && cardType !== "item" ? (
+          <>
+            <span className={styles.skill}>💎 {skill}</span>
+            <span className={styles.hp}>❤️ {hitPoints}</span>
+          </>
+        ) : (
+          <>
+            <span className={styles.skill}>&nbsp;</span>
+            <span className={styles.hp}>&nbsp;</span>
+          </>
+        )}
+      </div>
     </div>
   );
 };

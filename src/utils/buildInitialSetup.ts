@@ -14,32 +14,36 @@ function initCardDefaults(card: Card): Card {
 
 export function buildInitialSetup(deck: Card[]) {
   const deckWithDefaults = deck.map(initCardDefaults);
+
   const warlord = deckWithDefaults.find(card =>
     card.traits?.includes("Warlord"),
   );
   if (!warlord) throw new Error("Deck invalide : aucun Warlord trouvé.");
 
+  // Ne prendre que des cartes character et de la même faction que le Warlord
+  const sameFaction = (card: Card) =>
+    card.faction === warlord.faction &&
+    card.cardType === "character" &&
+    card.id !== warlord.id;
+
   // Filtrer et mélanger les cartes de niveau 1 (sans le Warlord)
-  const level1Cards = deckWithDefaults.filter(
-    c => c.level === 1 && c.id !== warlord.id,
-  );
-  const shuffledLevel1 = shuffleArray(level1Cards);
-  const level1 = shuffledLevel1.slice(0, 3);
+  const level1Cards = shuffleArray(
+    deckWithDefaults.filter(c => c.level === 1 && sameFaction(c)),
+  ).slice(0, 3);
 
   // Filtrer et mélanger les cartes de niveau 2 (sans le Warlord)
-  const level2Cards = deckWithDefaults.filter(
-    c => c.level === 2 && c.id !== warlord.id,
-  );
-  const shuffledLevel2 = shuffleArray(level2Cards);
-  const level2 = shuffledLevel2.slice(0, 2);
+  const level2Cards = shuffleArray(
+    deckWithDefaults.filter(c => c.level === 2 && sameFaction(c)),
+  ).slice(0, 2);
 
-  const startingCards = [warlord, ...level1, ...level2];
+  const startingCards = [warlord, ...level1Cards, ...level2Cards];
 
   const startingIds = new Set(startingCards.map(c => c.id));
   const remainingDeck = shuffleArray(
     deckWithDefaults.filter(c => !startingIds.has(c.id)),
   );
 
+  console.log(startingCards, remainingDeck);
   return {
     startingCards,
     remainingDeck,
