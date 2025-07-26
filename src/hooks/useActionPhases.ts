@@ -67,6 +67,8 @@ interface Props {
   // hasPhaseHandledRef: React.MutableRefObject<boolean>;
   clickMode: ClickMode;
   setClickMode: Dispatch<SetStateAction<ClickMode>>;
+  setPlayerDiceValue: Dispatch<SetStateAction<number>>;
+  setAiDiceValue: Dispatch<SetStateAction<number>>;
 }
 
 export function useActionPhases({
@@ -123,6 +125,8 @@ export function useActionPhases({
   setSelectedCards,
   // ** nextPhase
   handleNextPhase,
+  setPlayerDiceValue,
+  setAiDiceValue,
 }: Props) {
   // Mémoriser les actions de setup
   const setupActions = useMemo(() => {
@@ -238,6 +242,8 @@ export function useActionPhases({
       isTie,
       setIsTie,
       handleNextPhase,
+      setPlayerDiceValue,
+      setAiDiceValue,
     });
   }, [
     setLogs,
@@ -247,6 +253,8 @@ export function useActionPhases({
     isTie,
     setIsTie,
     handleNextPhase,
+    setPlayerDiceValue,
+    setAiDiceValue,
   ]);
 
   const hasPhaseHandledRef = useRef(false);

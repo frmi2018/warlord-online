@@ -1,7 +1,5 @@
 import { useGameContext } from "../contexts/GameContext";
 
-import { D20 } from "./D20";
-
 import styles from "./PhaseInfo.module.css";
 
 export default function PhaseInfo() {
@@ -17,7 +15,6 @@ export default function PhaseInfo() {
         <p>Phase {phase}</p>
         <p>tour : {turn}</p>
         <p>clickMode : {clickMode}</p>
-        <p>--</p>
 
         <div
           style={{
@@ -25,9 +22,7 @@ export default function PhaseInfo() {
             justifyContent: "center",
             alignContent: "space-around",
           }}
-        >
-          <D20 type="fail" value={1} />
-        </div>
+        ></div>
       </div>
     </div>
   );

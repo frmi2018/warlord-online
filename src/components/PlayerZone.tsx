@@ -1,8 +1,11 @@
 // src/components/PlayerZone.tsx
 import React from "react";
+import { useGameContext } from "../contexts/GameContext";
 import type { Dispatch, SetStateAction } from "react";
 import styles from "./PlayerZone.module.css";
 import type { Ranks, Card } from "../types/types";
+
+import { D20 } from "./D20";
 
 interface PlayerZoneProps {
   title: string;
@@ -30,6 +33,14 @@ const PlayerZone: React.FC<PlayerZoneProps> = ({
   isPlayer,
   selectedRank,
 }) => {
+  const {
+    playerDeck,
+    aiDeck,
+    playerDiscardPile,
+    aiDiscardPile,
+    playerDiceValue,
+    aiDiceValue,
+  } = useGameContext();
   return (
     <div className={styles.playerSection}>
       <div className={styles.zone}>
@@ -44,6 +55,13 @@ const PlayerZone: React.FC<PlayerZoneProps> = ({
           >
             ⬆️
           </button>
+
+          {isPlayer ? (
+            <D20 type={"normal"} value={playerDiceValue} size={80} />
+          ) : (
+            <D20 type={"normal"} value={aiDiceValue} size={80} />
+          )}
+
           <button
             className={styles.navArrow}
             onClick={() => setRankOffset(rankOffset + 1)}
@@ -51,6 +69,15 @@ const PlayerZone: React.FC<PlayerZoneProps> = ({
           >
             ⬇️
           </button>
+          <div className={styles.deckContainer}>
+            <button className={styles.deck}>
+              {isPlayer ? playerDeck.length : aiDeck.length}
+            </button>
+
+            <button className={styles.discard}>
+              {isPlayer ? playerDiscardPile.length : aiDiscardPile.length}
+            </button>
+          </div>
         </div>
       </div>
 

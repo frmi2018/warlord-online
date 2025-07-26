@@ -46,6 +46,8 @@ export function useGameState() {
   // const [hasDiscarded, setHasDiscarded] = useState<boolean>(false);
   const [selectedToDisplay, setSelectedToDisplay] = useState<Card | null>(null);
   const [clickMode, setClickMode] = useState<ClickMode>("display");
+  const [aiDiceValue, setAiDiceValue] = useState(12);
+  const [playerDiceValue, setPlayerDiceValue] = useState(12);
 
   const { handleNextPhase } = useNextPhase({
     phase,
@@ -250,5 +252,9 @@ export function useGameState() {
     clickMode,
     setClickMode,
     handleCardClick, // Retourner la fonction
+    aiDiceValue,
+    setAiDiceValue,
+    playerDiceValue,
+    setPlayerDiceValue,
   };
 }

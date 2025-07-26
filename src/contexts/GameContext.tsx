@@ -26,6 +26,14 @@ interface GameContextType {
   actionsPlayer: number;
   actionsAi: number;
   hasStarted: boolean;
+  playerDeck: Card[];
+  aiDeck: Card[];
+  playerDiscardPile: Card[];
+  aiDiscardPile: Card[];
+  playerDiceValue: number;
+  setPlayerDiceValue: React.Dispatch<React.SetStateAction<number>>;
+  aiDiceValue: number;
+  setAiDiceValue: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export const GameContext = createContext<GameContextType | undefined>(

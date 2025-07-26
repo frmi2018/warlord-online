@@ -13,6 +13,8 @@ interface PhaseInitiativeActionsProps {
   setIsTie: Dispatch<SetStateAction<boolean>>;
   setLogs: Dispatch<SetStateAction<string[]>>;
   handleNextPhase: () => void;
+  setPlayerDiceValue: Dispatch<SetStateAction<number>>;
+  setAiDiceValue: Dispatch<SetStateAction<number>>;
 }
 
 export const phaseInitiativeActions = ({
@@ -23,6 +25,8 @@ export const phaseInitiativeActions = ({
   isTie,
   setIsTie,
   handleNextPhase,
+  setPlayerDiceValue,
+  setAiDiceValue,
 }: PhaseInitiativeActionsProps): Action[] => {
   const actions: Action[] = [];
 
@@ -36,6 +40,8 @@ export const phaseInitiativeActions = ({
           setLogs,
           setHasRolled,
           setIsTie,
+          setPlayerDiceValue,
+          setAiDiceValue,
         );
       },
       enabled: true,

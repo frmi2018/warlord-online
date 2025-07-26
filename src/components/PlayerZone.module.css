@@ -6,15 +6,23 @@
   justify-content: flex-start;
   align-items: center;
   padding: 0.5rem;
+  border: 1px solid #666;
 }
 
 .zone {
+  height: 100%;
   display: flex;
+  justify-content: center;
   align-items: center;
+  border: 1px solid #666;
 }
 
 .sectionLabel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   min-height: 100%;
+  background-color: #666;
 }
 
 .sectionLabel h3 {
@@ -24,32 +32,67 @@
 }
 
 .rankNavigation {
+  width: 100px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 0.5rem;
 }
 
 .navArrow {
-  background: #444;
+  background: #4a90e2;
   color: white;
-  border: 1px solid #666;
-  padding: 0.5rem;
-  cursor: pointer;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
   border-radius: 4px;
-  font-size: 1rem;
+  cursor: pointer;
   transition: all 0.2s;
-  width: 40px;
-  height: 40px;
+  margin: 0.5rem;
+  width: 50%;
 }
 
 .navArrow:hover:not(:disabled) {
-  background: #555;
-  transform: scale(1.1);
+  background: #357abd;
+  transform: translateY(-2px);
 }
 
 .navArrow:disabled {
   opacity: 0.3;
   cursor: not-allowed;
+}
+
+.deckContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.deckContainer button {
+  border: 1px solid #666;
+  padding: 0.5rem;
+  font-size: 0.9rem;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 2px;
+  width: 40px;
+  height: 60px;
+}
+
+.deck {
+  background: linear-gradient(
+    180deg,
+    rgba(129, 74, 3, 0.89),
+    rgba(157, 184, 6, 0.781),
+    rgba(129, 74, 3, 0.89)
+  );
+  color: black;
+}
+
+.discard {
+  background: black;
+  color: white;
 }
 
 .ranksContainer {

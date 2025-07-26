@@ -65,6 +65,10 @@ const GamePage: React.FC = () => {
     handleNextPhase,
     selectedToDisplay,
     handleCardClick,
+    aiDiceValue,
+    setAiDiceValue,
+    playerDiceValue,
+    setPlayerDiceValue,
   } = useGameState();
 
   // Définir les boutons d'action selon la phase
@@ -122,6 +126,8 @@ const GamePage: React.FC = () => {
     handleNextPhase,
     setClickMode,
     clickMode,
+    setPlayerDiceValue,
+    setAiDiceValue,
   });
 
   return (
@@ -144,6 +150,14 @@ const GamePage: React.FC = () => {
         actionsPlayer,
         actionsAi,
         hasStarted,
+        playerDeck,
+        aiDeck,
+        playerDiscardPile,
+        aiDiscardPile,
+        playerDiceValue,
+        setPlayerDiceValue,
+        aiDiceValue,
+        setAiDiceValue,
       }}
     >
       <GameBoard />

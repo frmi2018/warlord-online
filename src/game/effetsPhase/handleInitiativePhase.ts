@@ -21,6 +21,8 @@ export const handleInitiativePhase = (
   setLogs: Dispatch<SetStateAction<string[]>>,
   setHasRolled: Dispatch<SetStateAction<boolean>>,
   setIsTie: Dispatch<SetStateAction<boolean>>,
+  setPlayerDiceValue: Dispatch<SetStateAction<number>>,
+  setAiDiceValue: Dispatch<SetStateAction<number>>,
 ) => {
   const rollInitiative = (): {
     winner: Turn | null;
@@ -31,7 +33,9 @@ export const handleInitiativePhase = (
     const iaModifier = 0;
 
     const playerResult: DiceResult = rollD20WithModifier(playerModifier);
+    setPlayerDiceValue(playerResult.roll);
     const iaResult: DiceResult = rollD20WithModifier(iaModifier);
+    setAiDiceValue(iaResult.roll);
 
     const logs: string[] = [];
 
